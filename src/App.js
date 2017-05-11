@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Flash from './components/card/card'
 
 class App extends Component {
   render() {
@@ -10,12 +11,32 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        { printCards(generateData()) }
       </div>
     );
   }
+}
+
+function printCards(cards) {
+  if(cards.length === 0)
+    return [];
+
+    return cards.map((card) => (
+      <Flash question={card.question} answer={card.answer}/>
+    ));
+}
+
+function generateData() {
+  return [
+    {question: 'this is sample q 1', answer: 'sample q 1 answer'},
+    {question: 'this is sample q 2', answer: 'sample q 2 answer'},
+    {question: 'this is sample q 4', answer: 'sample q 4 answer'},
+    {question: 'this is sample q 3', answer: 'sample q 3 answer'},
+    {question: 'this is sample q 5', answer: 'sample q 5 answer'},
+    {question: 'this is sample q 6', answer: 'sample q 6 answer'},
+    {question: 'this is sample q 7', answer: 'sample q 7 answer'},
+    {question: 'this is sample q 8', answer: 'sample q 8 answer'},
+  ];
 }
 
 export default App;
