@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Flash from './components/card/card'
+import CardList from './components/card_list/card_list'
 
 class App extends Component {
   render() {
@@ -11,19 +11,10 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        { printCards(generateData()) }
+        <CardList cardsData={generateData()}/>
       </div>
     );
   }
-}
-
-function printCards(cards) {
-  if(cards.length === 0)
-    return [];
-
-    return cards.map((card) => (
-      <Flash question={card.question} answer={card.answer}/>
-    ));
 }
 
 function generateData() {
