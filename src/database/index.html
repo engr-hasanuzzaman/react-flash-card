@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+  <head>
+      <!-- Include Dexie -->
+      <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+      <script type="text/javascript" src="database.js"></script>  
+      <script>
+          //
+          // Define your database
+          //
+          var c_db = new Database("friend_database");
+          c_db.addTable('friends', ['name', 'age']);
+          c_db.addTable('test', ['name', 'age']);
+          
+          //
+          // Put some data into it
+          //
+          var f_table = c_db.getTable('friends');
+          f_table.put({name: "sumon", age: 8}).then (function(){
+              //
+              // Then when data is stored, read from it
+              //
+              return f_table.get('sumon');
+          }).then(function (friend) {
+              //
+              // Display the result
+              //
+              alert ("Nicolas has shoe size " + friend.age + friend.name);
+          }).catch(function(error) {
+             //
+             // Finally don't forget to catch any error
+             // that could have happened anywhere in the
+             // code blocks above.
+             //
+             alert ("Ooops: " + error);
+          });
+
+          var test_table = c_db.getTable('test');
+          test_table.put({name: "santa", age: 8}).then (function(){
+              //
+              // Then when data is stored, read from it
+              //
+              return test_table.get('santa');
+          }).then(function (friend) {
+              //
+              // Display the result
+              //
+              alert ("Nicolas has shoe size " + friend.age + friend.name);
+          }).catch(function(error) {
+             //
+             // Finally don't forget to catch any error
+             // that could have happened anywhere in the
+             // code blocks above.
+             //
+             alert ("Ooops: " + error);
+          });
+      </script>
+  </head>
+</html>
